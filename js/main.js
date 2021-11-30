@@ -2,8 +2,10 @@
 
 import { openModal, closeModal } from "./modal.js"
 import { getProdutos } from "./produtos.js"
+import { imagemPreview } from "./imagemPreview.js"
+import { postProduto } from "./produtos.js"
 
-const criarLinhas = ({id, nome, preco, categoria, foto}) => {
+const criarLinhas = ({ id, nome, preco, categoria, foto }) => {
     const linha = document.createElement("tr")
     linha.innerHTML = `
     <td>
@@ -31,6 +33,22 @@ const carregarTabela = async () => {
     container.replaceChildren(...linhas)
 }
 
+const handleFile = () => imagemPreview("inputFile", "imagePreview")
+
+const salvarProduto = () => {
+    const produto = {
+        nome: document.getElementById("product").value,
+        preco: document.getElementById("price").value,
+        categoria: document.getElementById("category").value,
+        foto: document.getElementById("imagePreview").src
+    }
+
+    postProduto(produto)
+    closeModal()
+    carregarTabela()
+
+}
+
 carregarTabela()
 
 //Eventos
@@ -39,3 +57,7 @@ document.getElementById("cadastrarCliente").addEventListener("click", openModal)
 document.getElementById("modalClose").addEventListener("click", closeModal)
 
 document.getElementById("cancel").addEventListener("click", closeModal)
+
+document.getElementById("inputFile").addEventListener("change", handleFile)
+
+document.getElementById("save").addEventListener("click", salvarProduto)

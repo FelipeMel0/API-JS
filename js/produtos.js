@@ -7,4 +7,16 @@ const getProdutos = async () => {
     return response.json()
 }
 
+const postProduto = (produto) => {
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(produto),
+        headers: {
+            'content-Type': 'application/json'
+        }
+    }
+    fetch(url, options)
+}
+
 export {getProdutos}
+export {postProduto}
