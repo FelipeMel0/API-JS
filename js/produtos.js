@@ -29,6 +29,19 @@ const deleteProduto = (id) =>{
     fetch(`${url}/${id}`, options)
 }
 
+const updateProduto = async (id, produto) =>{
+    const options = {
+        method: 'UPDATE',
+        body: JSON.stringify(produto),
+        headers: {
+            'content-Type': 'application/json'
+        }
+    }
+
+    await fetch(`${url}/${id}`, options)
+}
+
 export {getProdutos}
 export {postProduto}
 export {deleteProduto}
+export {updateProduto}

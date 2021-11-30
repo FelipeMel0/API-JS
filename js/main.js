@@ -1,10 +1,11 @@
 "use strict"
 
-import { openModal, closeModal } from "./modal.js"
+import { openModal, closeModal, openModalUpdate } from "./modal.js"
 import { getProdutos } from "./produtos.js"
 import { imagemPreview } from "./imagemPreview.js"
 import { postProduto } from "./produtos.js"
 import { deleteProduto } from "./produtos.js"
+import { updateProduto } from "./produtos.js"
 
 const criarLinhas = ({ id, nome, preco, categoria, foto }) => {
     const linha = document.createElement("tr")
@@ -54,6 +55,10 @@ const handleClickTbody = ({ target }) => {
         const acaoBotao = target.textContent.trim()
         if (acaoBotao === "excluir") {
             deleteProduto(target.dataset.idproduto)
+            carregarTabela()
+        }
+        else if (acaoBotao === "editar"){
+            openModalUpdate(target)
             carregarTabela()
         }
     }
