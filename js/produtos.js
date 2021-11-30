@@ -18,5 +18,17 @@ const postProduto = (produto) => {
     fetch(url, options)
 }
 
+const deleteProduto = (id) =>{
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'content-Type': 'application/json'
+        }
+    }
+
+    fetch(`${url}/${id}`, options)
+}
+
 export {getProdutos}
 export {postProduto}
+export {deleteProduto}
