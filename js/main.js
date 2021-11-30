@@ -3,7 +3,7 @@
 import { openModal, closeModal } from "./modal.js"
 import { getProdutos } from "./produtos.js"
 
-const criarLinhas = ({nome, preco, categoria, foto}) => {
+const criarLinhas = ({id, nome, preco, categoria, foto}) => {
     const linha = document.createElement("tr")
     linha.innerHTML = `
     <td>
@@ -13,10 +13,10 @@ const criarLinhas = ({nome, preco, categoria, foto}) => {
     <td>${preco}</td>
     <td>${categoria}</td>
     <td>
-        <button type="button" class="button green">
+        <button type="button" class="button green" data-idproduto="${id}">
             editar
         </button>
-        <button type="button" class="button red">
+        <button type="button" class="button red" data-idproduto="${id}">
             excluir
         </button>
     </td>
